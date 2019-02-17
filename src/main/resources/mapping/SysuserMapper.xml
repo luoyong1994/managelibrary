@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ly.mobilelibrary.base.mapper.SysuserMapper">
+  <resultMap id="BaseResultMap" type="com.ly.mobilelibrary.base.model.Sysuser">
+    <result column="user_id" jdbcType="INTEGER" property="userId" />
+    <result column="user_name" jdbcType="VARCHAR" property="userName" />
+    <result column="user_password" jdbcType="VARCHAR" property="userPassword" />
+    <result column="user_phone" jdbcType="VARCHAR" property="userPhone" />
+  </resultMap>
+  <select id="querySysuser" resultType="com.ly.mobilelibrary.base.model.Sysuser">
+    select * from sysuser where user_name=#{userName}
+  </select>
+  <insert id="add">
+    insert into sysuser(user_id,user_name,user_password,user_phone) values(#{userId},#{userName},#{userPassword},#{userPhone})
+  </insert>
+
+
+</mapper>
