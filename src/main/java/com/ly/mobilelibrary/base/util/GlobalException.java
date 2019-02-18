@@ -30,7 +30,7 @@ public class GlobalException extends Exception{
      */
     @ExceptionHandler(value = GlobalException.class)
     @ResponseBody
-    public JsonResult globalExceptionHandler(HttpServletRequest request, GlobalException e){
+    public JsonResult globalExceptionHandler(HttpServletRequest request, ActionException e){
         System.out.println(e.getMessage());
         JsonResult jsonResult = new JsonResult(e);
         return jsonResult;
