@@ -17,22 +17,18 @@ import javax.servlet.http.HttpServletRequest;
 @ControllerAdvice
 public class GlobalException extends Exception{
 
-
-    public GlobalException(){
-        super();
-    }
-
     /**
      * 全局异常处理类
      * @param request
      * @param e
      * @return
      */
-    @ExceptionHandler(value = GlobalException.class)
+    @ExceptionHandler(value = Exception.class)
     @ResponseBody
-    public JsonResult globalExceptionHandler(HttpServletRequest request, ActionException e){
+    public JsonResult globalExceptionHandler(HttpServletRequest request, Exception e){
         System.out.println(e.getMessage());
         JsonResult jsonResult = new JsonResult(e);
+        System.out.println(jsonResult.toString());
         return jsonResult;
     }
 

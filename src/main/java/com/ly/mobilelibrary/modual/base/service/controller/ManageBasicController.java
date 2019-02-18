@@ -6,6 +6,7 @@ import com.ly.mobilelibrary.base.model.Sysuser;
 import com.ly.mobilelibrary.base.util.JsonResult;
 import com.ly.mobilelibrary.modual.base.service.ManageBasicService;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.annotation.Resource;
@@ -16,7 +17,7 @@ public class ManageBasicController {
     @Resource
     public ManageBasicService manageBasicService;
 
-    @RequestMapping("login.do")
+    @RequestMapping(value="login.do",method = RequestMethod.POST)
     public JsonResult login(Sysuser sysuser){
         Sysuser sysuser1 = manageBasicService.login(sysuser);
         JsonResult jsonResult = new JsonResult(sysuser1);
