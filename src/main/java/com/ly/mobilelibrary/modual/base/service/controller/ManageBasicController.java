@@ -10,6 +10,9 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.annotation.Resource;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 @RestController
 @RequestMapping("/user/")
@@ -29,6 +32,31 @@ public class ManageBasicController {
         manageBasicService.add(sysuser);
         return new JsonResult();
     }
+
+    @RequestMapping("queryAdmin.do")
+    public JsonResult queryAdmin(){
+        List<Sysuser> list = manageBasicService.queryAdmin();
+        return new JsonResult(list);
+    }
+
+    @RequestMapping("deleteAdmin.do")
+    public JsonResult deleteAdmin(Sysuser sysuser){
+        manageBasicService.deleteAdmin(sysuser);
+        return new JsonResult();
+    }
+
+    @RequestMapping("addAdmin.do")
+    public JsonResult addAdmin(Sysuser sysuser){
+        manageBasicService.add(sysuser);
+        return new JsonResult();
+    }
+
+    @RequestMapping("queryUser.do")
+    public JsonResult queryUser(Sysuser sysuser){
+        return new JsonResult(manageBasicService.queryUser(sysuser));
+    }
+
+
 
 
 }

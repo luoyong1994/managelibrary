@@ -1,18 +1,38 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.ly.mobilelibrary.base.mapper.SysuserMapper">
-  <resultMap id="BaseResultMap" type="com.ly.mobilelibrary.base.model.Sysuser">
-    <result column="user_id" jdbcType="INTEGER" property="userId" />
-    <result column="user_name" jdbcType="VARCHAR" property="userName" />
-    <result column="user_password" jdbcType="VARCHAR" property="userPassword" />
-    <result column="user_phone" jdbcType="VARCHAR" property="userPhone" />
-  </resultMap>
-  <select id="querySysuser" resultType="com.ly.mobilelibrary.base.model.Sysuser">
-    select * from sysuser where user_name=#{userName}
-  </select>
-  <insert id="add">
-    insert into sysuser(user_id,user_name,user_password,user_phone) values(#{userId},#{userName},#{userPassword},#{userPhone})
-  </insert>
+    <resultMap id="BaseResultMap" type="com.ly.mobilelibrary.base.model.Sysuser">
+        <result column="user_id" jdbcType="INTEGER" property="userId"/>
+        <result column="user_name" jdbcType="VARCHAR" property="userName"/>
+        <result column="user_password" jdbcType="VARCHAR" property="userPassword"/>
+        <result column="user_phone" jdbcType="VARCHAR" property="userPhone"/>
+        <result column="user_type" jdbcType="VARCHAR" property="userType"/>
+    </resultMap>
+    <select id="querySysuser" resultType="com.ly.mobilelibrary.base.model.Sysuser">
+        select user_id as "userId", user_name as "userName",user_password as "userPassword",user_phone as "userPhone"
+        from sysuser where user_name=#{userName}
+    </select>
+    <insert id="add">
+        insert into sysuser(user_id,user_name,user_password,user_phone,user_type)
+        values(#{userId},#{userName},#{userPassword},#{userPhone},#{userType})
+    </insert>
 
+    <select id="queryAdmin" resultType="com.ly.mobilelibrary.base.model.Sysuser">
+        select user_id as "userId", user_name as "userName",user_password as "userPassword",user_phone as "userPhone",
+        user_type as "userType" from sysuser where user_type="1"
+    </select>
+    
+    <delete id="deleteAdmin">
+        delete from sysuser where user_id=#{userId} and user_type=#{userType}
+    </delete>
+    
+    <select id="selectMaxUserId" resultType="com.ly.mobilelibrary.base.model.Sysuser">
+        select user_id as "userId", user_name as "userName",user_password as "userPassword",user_phone as "userPhone"
+        from sysuser where user_id =( select max(user_id) from sysuser)
+    </select>
 
+    <select id="queryUser" resultType="com.ly.mobilelibrary.base.model.Sysuser">
+        select user_id as "userId", user_name as "userName",user_password as "userPassword",user_phone as "userPhone",
+        user_type as "userType" from sysuser where user_type="0"
+    </select>
 </mapper>

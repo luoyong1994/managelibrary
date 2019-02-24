@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.util.DigestUtils;
 
 import javax.annotation.Resource;
+import java.util.List;
 
 /**
  * Created with IntelliJ IDEA.
@@ -26,6 +27,7 @@ public class ManageBasicServiceImpl implements ManageBasicService {
     public Sysuser login(Sysuser sysuser) {
         Sysuser sysuser1 = sysuserMapper.querySysuser(sysuser);
         if (null != sysuser && null != sysuser1) {
+            sysuser.setUserPassword(DigestUtils.md5DigestAsHex(sysuser.getUserPassword().getBytes()));
             if (sysuser.getUserPassword().equals(sysuser1.getUserPassword())) {
                 return sysuser1;
             } else {
@@ -38,8 +40,29 @@ public class ManageBasicServiceImpl implements ManageBasicService {
 
     @Override
     public void add(Sysuser sysuser) {
+        Sysuser lastSysuser = sysuserMapper.selectMaxUserId();
+        if(null!=lastSysuser){
+            sysuser.setUserId(lastSysuser.getUserId()+1);
+        }else {
+            sysuser.setUserId(1);
+        }
         String pwd = DigestUtils.md5DigestAsHex(sysuser.getUserPassword().getBytes());
         sysuser.setUserPassword(pwd);
         sysuserMapper.add(sysuser);
+    }
+
+    @Override
+    public List<Sysuser> queryAdmin() {
+        return sysuserMapper.queryAdmin();
+    }
+
+    @Override
+    public void deleteAdmin(Sysuser sysuser) {
+        sysuserMapper.deleteAdmin(sysuser);
+    }
+
+    @Override
+    public List<Sysuser> queryUser(Sysuser sysuser) {
+        return sysuserMapper.queryUser(sysuser);
     }
 }

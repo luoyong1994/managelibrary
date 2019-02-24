@@ -9,6 +9,8 @@ public class Sysuser {
 
     private String userPhone;
 
+    private String userType;
+
     public Integer getUserId() {
         return userId;
     }
@@ -39,5 +41,24 @@ public class Sysuser {
 
     public void setUserPhone(String userPhone) {
         this.userPhone = userPhone == null ? null : userPhone.trim();
+    }
+
+    public String getUserType() {
+        return userType;
+    }
+
+    public void setUserType(String userType) {
+        this.userType = userType;
+    }
+
+    @Override
+    public String toString() {
+        return "Sysuser{" +
+                "userId=" + userId +
+                ", userName='" + userName + '\'' +
+                ", userPassword='" + userPassword + '\'' +
+                ", userPhone='" + userPhone + '\'' +
+                ", userType='" + userType + '\'' +
+                '}';
     }
 }
