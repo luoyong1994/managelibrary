@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ly.mobilelibrary.base.mapper.ManageBookMapper">
+  <resultMap id="BaseResultMap" type="com.ly.mobilelibrary.base.model.Classify">
+    <result column="id" jdbcType="INTEGER" property="id" />
+    <result column="name" jdbcType="VARCHAR" property="name" />
+    <result column="classify" jdbcType="VARCHAR" property="classify" />
+    <result column="bookid" jdbcType="VARCHAR" property="bookid" />
+
+  </resultMap>
+
+
+  <insert id="addClass" parameterType="com.ly.mobilelibrary.base.model.Classify">
+    insert into classify(id,name,classify,bookid)values (#{id},#{name},#{classify},#{bookid});
+  </insert>
+
+  <update id="updateClass" parameterType="com.ly.mobilelibrary.base.model.Classify">
+    update classify
+    <trim prefix="set" suffixOverrides=",">
+      <if test="name!=null">
+        name =#{name},
+      </if>
+      <if test="classify!=null">
+        classify=#{classify},
+      </if>
+      <if test="bookid!=null">
+        bookid=#{bookid}
+      </if>
+    </trim>
+    where id=#{id}
+  </update>
+
+  <delete id="deleteClass" parameterType="com.ly.mobilelibrary.base.model.Classify">
+    delete from classify where id=#{id}
+  </delete>
+  
+  <select id="queryClass" parameterType="com.ly.mobilelibrary.base.model.Classify">
+    select * from classify
+    <where>
+      <if test="id!=null">
+        id=#{id}
+      </if>
+    </where>
+  </select>
+
+
+</mapper>

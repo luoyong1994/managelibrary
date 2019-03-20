@@ -50,5 +50,30 @@ create TABLE book(
      marc varchar(100),
      subTitle varchar(100),
      markbooknumber varchar(100),
-     markbookname varchar(100)
+     markbookname varchar(100),
+     borrownum varchar(100)
 ) ENGINE=INNODB  DEFAULT CHARSET=utf8;
+
+create TABLE classify(
+     id VARCHAR(100) not null,
+     bookid varchar(100) not null,
+     name varchar(100) not null,
+     classify varchar(2) not null
+) ENGINE=INNODB  DEFAULT CHARSET=utf8;
+
+create TABLE borrowbookinfo(
+    id varchar(100) not null,
+    bookid varchar(100) not null,
+    userid varchar(100) not null,
+    isorder varchar(2),
+    orderDate varchar(8),
+    isborrow varchar(2),
+    borrowbeginDate varchar(8),
+    borrowEndDate varchar(8)
+)ENGINE=INNODB  DEFAULT CHARSET=utf8;
+
+create TABLE collection(
+    id varchar(100) not null,
+    bookid varchar(100) not null,
+    userId varchar(100) not null
+)ENGINE=INNODB  DEFAULT CHARSET=utf8;

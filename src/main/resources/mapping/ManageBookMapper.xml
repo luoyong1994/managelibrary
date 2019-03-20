@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ly.mobilelibrary.base.mapper.ManageBookMapper">
+  <resultMap id="BaseResultMap" type="com.ly.mobilelibrary.base.model.Book">
+    <result column="id" jdbcType="INTEGER" property="id" />
+    <result column="title" jdbcType="VARCHAR" property="title" />
+    <result column="author" jdbcType="VARCHAR" property="author" />
+    <result column="publish" jdbcType="VARCHAR" property="publish" />
+    <result column="publishDate" jdbcType="VARCHAR" property="publishDate" />
+    <result column="standardcode" jdbcType="VARCHAR" property="standardcode" />
+    <result column="callnumber" jdbcType="VARCHAR" property="callnumber" />
+    <result column="marc" jdbcType="VARCHAR" property="marc" />
+    <result column="markbooknumber" jdbcType="VARCHAR" property="markbooknumber" />
+    <result column="markbookname" jdbcType="VARCHAR" property="markbookname" />
+    <result column="borrownum" jdbcType="VARCHAR" property="borrownum" />
+    <result column="subTitle" jdbcType="VARCHAR" property="subTitle" />
+
+  </resultMap>
+  
+  <insert id="addBook">
+    insert into book(id,title,author,publish,publishDate,standardcode,callnumber,marc,markbooknumber,markbookname,borrownum,subTitle)
+  value(#{id},#{title},#{author},#{publish},#{publishDate},#{standardcode},#{callnumber},#{marc},#{markbooknumber},#{markbookname},#{borrownum},#{subTitle});
+  </insert>
+  
+  <delete id="deletBook" parameterType="com.ly.mobilelibrary.base.model.Book">
+    delete from book where id=#{id}
+  </delete>
+
+  <select id="queryBooks" resultType="com.ly.mobilelibrary.base.model.Book">
+    select * from book;
+  </select>
+
+
+  <update id="updateBook">
+    update book
+    <trim prefix="set" suffixOverrides=",">
+    <if test="title!=null">
+      title = #{title},
+    </if>
+    <if test="author!=null">
+      author=#{author},
+    </if>
+    <if test="publish!=null">
+      publish =#{publish},
+    </if>
+    <if test="publishDate!=null">
+      publishDate=#{publishDate},
+    </if>
+    <if test="standardcode!=null">
+      standardcode=#{standardcode},
+    </if>
+      <if test="callnumber!=null">
+        callnumber=#{callnumber},
+      </if>
+      <if test="marc!=null">
+        marc=#{marc},
+      </if>
+      <if test="markbooknumber!=null">
+        markbooknumber=#{markbooknumber},
+      </if>
+      <if test="markbookname!=null">
+        markbookname=#{markbookname},
+      </if>
+      <if test="borrownum!=null">
+        borrownum=#{borrownum},
+      </if>
+      <if test="subTitle!=null">
+        subTitle=#{subTitle},
+      </if>
+    </trim>
+    where id=#{id}
+  </update>
+
+  <select id="queryBookClassInfo" resultType="java.util.Map">
+    select classify,sum(*) amount from book b join classify c on b.id=c.bookid group by classify;
+  </select>
+</mapper>

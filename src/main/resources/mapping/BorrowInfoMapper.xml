@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ly.mobilelibrary.base.mapper.ManageBorrowInfoMapper">
+  <resultMap id="BaseResultMap" type="com.ly.mobilelibrary.base.model.Borrow">
+    <result column="id" jdbcType="INTEGER" property="id" />
+    <result column="bookId" jdbcType="INTEGER" property="bookId" />
+    <result column="userId" jdbcType="INTEGER" property="userId" />
+    <result column="isOrder" jdbcType="INTEGER" property="isOrder" />
+    <result column="orderDate" jdbcType="INTEGER" property="orderDate" />
+    <result column="isBorrow" jdbcType="INTEGER" property="isBorrow" />
+    <result column="borrowBeginDate" jdbcType="INTEGER" property="borrowBeginDate" />
+    <result column="borrowEndDate" jdbcType="INTEGER" property="borrowEndDate" />
+  </resultMap>
+
+  <insert id="addBorrowInfo" parameterType="com.ly.mobilelibrary.base.model.Borrow">
+    insert into borrowbookinfo(id,bookId,userId,isOrder,orderDate,isBorrow,borrowBeginDate,borrowEndDate)
+    values (#{id},#{bookId},#{userId},#{isOrder},#{orderDate},#{isBorrow},#{borrowBeginDate},#{borrowEndDate})
+  </insert>
+
+  <update id="updateBorrowInfo" parameterType="com.ly.mobilelibrary.base.model.Borrow">
+    update borrowbookinfo
+    <trim prefix="set" suffixOverrides=",">
+      <if test="bookId!=null">
+        bookId=#{bookId},
+      </if>
+      <if test="userId!=null">
+        userId=#{userId},
+      </if>
+      <if test="isOrder!=null">
+        isOrder=#{isOrder},
+      </if>
+      <if test="orderDate!=null">
+        orderDate=#{orderDate},
+      </if>
+      <if test="isBorrow!=null">
+        isBorrow=#{isBorrow},
+      </if>
+      <if test="borrowBeginDate!=null">
+        borrowBeginDate=#{borrowBeginDate},
+      </if>
+      <if test="borrowEndDate!=null">
+        borrowEndDate=#{borrowEndDate},
+      </if>
+    </trim>
+    where id=#{id}
+  </update>
+ 
+  <select id="queryBorrowInfo" parameterType="com.ly.mobilelibrary.base.model.Borrow" resultType="com.ly.mobilelibrary.base.model.Borrow">
+    select * from borrowbookinfo  WHERE userId=#{userId}
+  </select>
+
+</mapper>

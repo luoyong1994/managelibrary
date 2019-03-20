@@ -7,7 +7,7 @@ package com.ly.mobilelibrary.base.model;
  * Time: 11:06
  * Description: No Description
  */
-public class book{
+public class Book {
     private  String id;
     private  String title;
     private  String author;
@@ -19,6 +19,16 @@ public class book{
     private  String subTitle;//副题名
     private  String markbooknumber;//索书号
     private String  markbookname;//索书名
+    private String borrownum;
+    private String classify;
+
+    public String getBorrownum() {
+        return borrownum;
+    }
+
+    public void setBorrownum(String borrownum) {
+        this.borrownum = borrownum;
+    }
 
     public String getId() {
         return id;
@@ -108,6 +118,14 @@ public class book{
         this.markbookname = markbookname;
     }
 
+    public String getClassify() {
+        return classify;
+    }
+
+    public void setClassify(String classify) {
+        this.classify = classify;
+    }
+
     @Override
     public String toString() {
         return "book{" +
@@ -122,6 +140,8 @@ public class book{
                 ", subTitle='" + subTitle + '\'' +
                 ", markbooknumber='" + markbooknumber + '\'' +
                 ", markbookname='" + markbookname + '\'' +
+                ", borrownum='" + borrownum + '\'' +
+                ", classify='" + classify + '\'' +
                 '}';
     }
 }
