@@ -11,6 +11,16 @@ public class Sysuser {
 
     private String userType;
 
+    private String cardnumber;//'一卡通号'
+
+    private String category;//0:专升本专升本,1:本科生,2:研究生,3:博士,4:研修生
+
+    private String profession;
+
+    private String userclass;//班级
+
+    private String imagepath;
+
     public Integer getUserId() {
         return userId;
     }
@@ -51,6 +61,46 @@ public class Sysuser {
         this.userType = userType;
     }
 
+    public String getCardnumber() {
+        return cardnumber;
+    }
+
+    public void setCardnumber(String cardnumber) {
+        cardnumber = cardnumber;
+    }
+
+    public String getCategory() {
+        return category;
+    }
+
+    public void setCategory(String category) {
+        this.category = category;
+    }
+
+    public String getProfession() {
+        return profession;
+    }
+
+    public void setProfession(String profession) {
+        this.profession = profession;
+    }
+
+    public String getUserclass() {
+        return userclass;
+    }
+
+    public void setUserclass(String userclass) {
+        this.userclass = userclass;
+    }
+
+    public String getImagepath() {
+        return imagepath;
+    }
+
+    public void setImagepath(String imagepath) {
+        this.imagepath = imagepath;
+    }
+
     @Override
     public String toString() {
         return "Sysuser{" +
@@ -59,6 +109,11 @@ public class Sysuser {
                 ", userPassword='" + userPassword + '\'' +
                 ", userPhone='" + userPhone + '\'' +
                 ", userType='" + userType + '\'' +
+                ", cardnumber='" + cardnumber + '\'' +
+                ", category='" + category + '\'' +
+                ", profession='" + profession + '\'' +
+                ", userclass='" + userclass + '\'' +
+                ", imagepath='" + imagepath + '\'' +
                 '}';
     }
 }

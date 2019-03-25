@@ -6,7 +6,11 @@ CREATE TABLE sysuser(
   user_name VARCHAR(255) NOT NULL,
   user_password VARCHAR(255) NOT NULL,
   user_phone VARCHAR(255) NOT NULL,
-  user_type VARCHAR(2)
+  user_type VARCHAR(2),
+  Cardnumber varchar(20) comment '一卡通号',
+  category varchar(3) comment '0:专升本专升本,1:本科生,2:研究生,3:博士,4:研修生',
+  profession varchar(20),
+  userclass varchar(20) comment '班级'
 ) ENGINE=INNODB  DEFAULT CHARSET=utf8;
 
 
@@ -35,7 +39,7 @@ create TABLE resource(
 	source_url VARCHAR(100) NOT null,
 	source_type VARCHAR(10) NOT NULL,
 	source_parentId varchar(100),
-	source_sort varchar(100)(2) NOT NULL
+	source_sort varchar(100) NOT NULL
 ) ENGINE=INNODB  DEFAULT CHARSET=utf8;
 
 
@@ -51,7 +55,8 @@ create TABLE book(
      subTitle varchar(100),
      markbooknumber varchar(100),
      markbookname varchar(100),
-     borrownum varchar(100)
+     borrownum varchar(100),
+     collectionNum varchar(10) comment '收藏数'
 ) ENGINE=INNODB  DEFAULT CHARSET=utf8;
 
 create TABLE classify(
