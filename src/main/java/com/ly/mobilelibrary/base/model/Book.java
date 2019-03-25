@@ -19,8 +19,9 @@ public class Book {
     private  String subTitle;//副题名
     private  String markbooknumber;//索书号
     private String  markbookname;//索书名
-    private String borrownum;
+    private String borrownum;//外借次数
     private String classify;
+    private String collectionNum;//收藏数
 
     public String getBorrownum() {
         return borrownum;
@@ -126,9 +127,17 @@ public class Book {
         this.classify = classify;
     }
 
+    public String getCollectionNum() {
+        return collectionNum;
+    }
+
+    public void setCollectionNum(String collectionNum) {
+        this.collectionNum = collectionNum;
+    }
+
     @Override
     public String toString() {
-        return "book{" +
+        return "Book{" +
                 "id='" + id + '\'' +
                 ", title='" + title + '\'' +
                 ", author='" + author + '\'' +
@@ -142,6 +151,7 @@ public class Book {
                 ", markbookname='" + markbookname + '\'' +
                 ", borrownum='" + borrownum + '\'' +
                 ", classify='" + classify + '\'' +
+                ", collectionNum='" + collectionNum + '\'' +
                 '}';
     }
 }
